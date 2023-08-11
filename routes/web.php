@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 # controllers
-use App\Http\Controllers\BoxController;
+use App\Http\Controllers\CashMovementController;
 
 # Models
 use App\Models\User;
@@ -18,9 +18,11 @@ use App\Models\User;
 |
 */
 
-Route::get('/', [BoxController::class, 'index']);
+Route::get('/home/{date?}', [CashMovementController::class, 'index'])->name('home');
+Route::get('/transactions', [CashMovementController::class, 'transactions'])->name('transactions');
+Route::post('/movement/month', [CashMovementController::class, 'byMonth'])->name('byMonth');
 
-Route::resource('box', BoxController::class);
+Route::resource('cash/movement', CashMovementController::class)->only('store');
 
 
 

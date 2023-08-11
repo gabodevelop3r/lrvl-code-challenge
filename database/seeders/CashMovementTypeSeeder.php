@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class BoxTypeSeeder extends Seeder
+class CashMovementTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class BoxTypeSeeder extends Seeder
     public function run(): void
     {
 
-        $arrBoxType = ( array )
+        $arrCashMovementType = ( array )
 
-        $arrBoxType = [
+        $arrCashMovementType = [
                         [
                             'name' => 'Ingreso',
                             'created_at' => date('Y-m-d H:i:s'),
@@ -29,8 +29,6 @@ class BoxTypeSeeder extends Seeder
                         ]
                     ];
 
-        DB::table('box_types')->insert( $arrBoxType );
-
-
+        DB::table('cash_movement_types')->insert( $arrCashMovementType );
     }
 }

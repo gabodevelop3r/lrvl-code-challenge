@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class BoxType extends Model
+class CashMovementType extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-                'name'
-            ];
+        'name'
+    ];
 
-    public function boxes() : HasMany
+    public function CashMovements() : HasMany
     {
         return $this->hasMany(Box::class);
     }

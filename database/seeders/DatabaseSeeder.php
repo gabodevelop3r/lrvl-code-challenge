@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $this->call(
-                BoxTypeSeeder::class,
-                BoxSeeder::class
-            );
+        $this->call([
+                CashMovementTypeSeeder::class,
+                CashMovementSeeder::class
+            ]);
 
     }
 }

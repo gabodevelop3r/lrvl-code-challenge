@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boxes', function (Blueprint $table) {
+        Schema::create('cash_movements', function (Blueprint $table) {
             $table->id();
             $table->integer('cash');
-            $table->unsignedBigInteger('box_type_id');
-            $table->foreign('box_type_id')->references('id')->on('box_types');
+            $table->unsignedBigInteger('cash_movement_type_id')->nullable();
+            $table->foreign('cash_movement_type_id')->references('id')->on('cash_movement_types');
             $table->timestamps();
         });
     }
@@ -25,9 +25,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('boxes', function (Blueprint $table) {
-            $table->dropForeign('box_type_id');
+        Schema::table('cash_movements', function (Blueprint $table) {
+            $table->dropForeign('cash_movement_type_id');
         });
-        Schema::dropIfExists('boxes');
+        Schema::dropIfExists('cash_movements');
     }
 };

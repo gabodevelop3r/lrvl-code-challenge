@@ -6,8 +6,8 @@ use Carbon\Carbon;
 
 class MonthRangeAction {
 
-    public function handle( Carbon $month ){
-
+    public function handle( Carbon $month = null ): array
+    {
         return $this->monthRange( $month );
     }
 

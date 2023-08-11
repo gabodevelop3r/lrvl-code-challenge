@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MovementRequest extends FormRequest
+class StoreMovementRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,8 @@ class MovementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => ['required', 'date_format:Y-m' ],
+            'cash' => 'required|numeric|gt:0',
+            'type' => 'required|exists:App\Models\CashMovementType,id'
         ];
     }
 }

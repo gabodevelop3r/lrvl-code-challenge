@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\BoxController;
+use App\Http\Controllers\Api\V1\CashMovementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,6 @@ use App\Http\Controllers\Api\V1\BoxController;
 
 
 
-Route::resource('v1/box', BoxController::class);
-
-Route::post('v1/box/month', [BoxController::class, 'byMonth']);
+Route::resource('v1/cash/movement', CashMovementController::class)->only('index','store');
+Route::post('v1/cash/movement/bymonth', [ CashMovementController::class, 'index' ] )->name('movement.index');
+Route::post('v1/cash/movement/total', [ CashMovementController::class, 'byMonth' ] );
