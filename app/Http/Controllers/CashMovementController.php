@@ -17,6 +17,11 @@ use App\http\Requests\{
 # Services
 use App\Services\CashMovementService;
 
+# models
+use App\Models\{
+        CashMovement
+    };
+
 class CashMovementController extends Controller
 {
 
@@ -31,11 +36,11 @@ class CashMovementController extends Controller
      * @param string $dateArg
      * @return View
      */
-    public function index( $dateArg = null) : View
+    public function index( $dateArg = null)
     {
 
         list( $monthlyExpenses, $month, $movements ) = $this->cashMovementService->getMonthyExpenses( $dateArg );
-
+        // return $movements;
         return view('home', [ 'monthlyExpenses' => $monthlyExpenses, 'month' => $month , 'movements'  => $movements ] );
     }
 
@@ -65,6 +70,19 @@ class CashMovementController extends Controller
         return view('transactions.index');
 
     }
+
+    /**
+     *
+     *
+     * Editar transaccion de movimientos
+     *
+     *
+     */
+    public function edit( $id ) : View
+    {
+
+        return view('transactions.edit');
+    }
      /**
      *
      * Consultar movimientos por mes
@@ -78,6 +96,11 @@ class CashMovementController extends Controller
         $date = Carbon::parse($request->date);;
 
         return to_route( 'home', ['date' => $date ] );
+    }
+
+    public function destroy( $id ) {
+        CashMovement::destroy($id);
+        return to_route('home');
     }
 
 }
