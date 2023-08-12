@@ -6,8 +6,17 @@
 ## Ejecutar proyecto
 -   docker-compose up -d
 
+## .env
+-   docker-compose exec app cp .env.example .env
+
+## Instalar dependencias 
+-   docker-compose exec app php artisan key:generate
+
 ## Instalar dependencias 
 -   docker-compose exec app composer install
+
+## Generar db sqlite
+-   docker-compose exec app touch database/database.sqlite
 
 ## Ejecutar migraciones y seed
 -   docker-compose exec app php artisan migrate:fresh --seed
