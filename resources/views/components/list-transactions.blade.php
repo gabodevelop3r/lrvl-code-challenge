@@ -4,6 +4,7 @@
           <tr>
             <th scope="col" >#</th>
             <th scope="col" >Cash</th>
+            <th scope="col">Tipo de movimiento</th>
             <th scope="col" >Fecha</th>
             <th scope="col" >Acciones</th>
           </tr>
@@ -13,6 +14,7 @@
                 <tr>
                     <th scope="row">{{ $movement->id }}</th>
                     <td >{{ $movement->cash }}</td>
+                    <td >{{ ( $movement->type->name ) }}</td>
                     <td>{{ $movement->created_at->diffForHumans() }}</td>
                     <td scope="">
                         <div class="">

@@ -23,7 +23,7 @@ class StoreMovementRequest extends FormRequest
     {
         return [
             'cash' => 'required|numeric|gt:0',
-            'type' => 'required|exists:App\Models\CashMovementType,id'
+            'cash_movement_type_id' => 'required|exists:App\Models\CashMovementType,id'
         ];
     }
 }

@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use \Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 # form request
 use App\Http\Requests\MovementRequest;
 use App\Http\Requests\StoreMovementRequest;
-
+use App\Models\CashMovement;
 #services
 use App\Services\CashMovementService;
 # libraries
@@ -69,6 +70,37 @@ class CashMovementController extends Controller
               'message' => 'Movimiento guardado correctamente'
             ], 201);
 
+    }
+
+    /**
+     *
+     * Actualizar gastos del mes
+     *
+     */
+    public function update(StoreMovementRequest $request)
+    {
+        $movement = CashMovement::firstOrFail($request->id);
+
+        $movement->update($request->all());
+
+        return response()->json([
+            'message' => 'Movimiento actualizado correctamente'
+          ], 201);
+
+    }
+
+    /**
+     *
+     * Eliminar gasto
+     *
+     */
+    public function destroy(Request $request){
+
+        CashMovement::destroy($request->id);
+
+        return response()->json([
+           'message' => 'Movimiento eliminado correctamente'
+          ], 201);
     }
 
 }

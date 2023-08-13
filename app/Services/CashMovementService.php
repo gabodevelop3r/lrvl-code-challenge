@@ -13,7 +13,6 @@ use Carbon\Carbon;
 # resources
 use App\Http\Resources\CashResource;
 
-use function PHPUnit\Framework\isNull;
 
 class CashMovementService {
 
@@ -77,7 +76,7 @@ class CashMovementService {
         return [
             $monthlyExpenses,
             $month,
-            CashMovement::AllCashMovementsByDate($date)->orderByDesc('id')->get()
+            CashMovement::AllCashMovementsByDate( $date )->orderByDesc( 'id' )->get( )
         ];
 
      }
@@ -109,10 +108,7 @@ class CashMovementService {
     public function storeMovement( Request $request ) : void
     {
 
-        CashMovement::create([
-                    'cash' => $request->cash,
-                    'cash_movement_type_id' => $request->type,
-        ]);
+        CashMovement::create( $request->all() );
 
     }
 

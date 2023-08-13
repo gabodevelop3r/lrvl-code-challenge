@@ -16,7 +16,13 @@ use App\Http\Controllers\Api\V1\CashMovementController;
 */
 
 
+# CRUD
+Route::resource('v1/cash/movement', CashMovementController::class)->only('index','store' , 'destroy');
+Route::post('v1/cash/movement/update', [ CashMovementController::class, 'update' ] );
+Route::post('v1/cash/movement/delete', [ CashMovementController::class, 'destroy']);
 
-Route::resource('v1/cash/movement', CashMovementController::class)->only('index','store');
+
+# Obtiene la collection de movimientos del mes consultado
 Route::post('v1/cash/movement/bymonth', [ CashMovementController::class, 'index' ] )->name('movement.index');
+# Obtiene el total de movimientos del mes consultado
 Route::post('v1/cash/movement/total', [ CashMovementController::class, 'byMonth' ] );

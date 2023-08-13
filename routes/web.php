@@ -5,24 +5,23 @@ use Illuminate\Support\Facades\Route;
 # controllers
 use App\Http\Controllers\CashMovementController;
 
-# Models
-use App\Models\User;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
+# HOME
+Route::get('/', function () {
+    return to_route('home');
+});
+
+# HOME
 Route::get('/home/{date?}', [CashMovementController::class, 'index'])->name('home');
+
+# Formulario de transacciones
 Route::get('/transactions', [CashMovementController::class, 'transactions'])->name('transactions');
+
+# consultar gastos del mes seleccionado
 Route::post('/movement/month', [CashMovementController::class, 'byMonth'])->name('byMonth');
 
-Route::resource('cash/movement', CashMovementController::class)->only('store','destroy','edit');
+# CRUD de transacciones
+Route::resource('cash/movement', CashMovementController::class)->except('show', 'index', 'create');
 
 
 

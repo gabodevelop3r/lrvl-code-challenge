@@ -19,7 +19,8 @@ use App\Services\CashMovementService;
 
 # models
 use App\Models\{
-        CashMovement
+        CashMovement,
+        CashMovementType
     };
 
 class CashMovementController extends Controller
@@ -40,7 +41,7 @@ class CashMovementController extends Controller
     {
 
         list( $monthlyExpenses, $month, $movements ) = $this->cashMovementService->getMonthyExpenses( $dateArg );
-        // return $movements;
+
         return view('home', [ 'monthlyExpenses' => $monthlyExpenses, 'month' => $month , 'movements'  => $movements ] );
     }
 
@@ -78,11 +79,25 @@ class CashMovementController extends Controller
      *
      *
      */
-    public function edit( $id ) : View
+    public function edit( CashMovement $movement ) : View
+    {
+        $movementTypes = CashMovementType::all();
+        return view('transactions.edit' , [ 'movement' => $movement, 'movementTypes' => $movementTypes ]);
+    }
+    /**
+     *
+     *  Actualizar transaccion de movimientos
+     *
+     *
+     */
+    public function update( CashMovement $movement ,StoreMovementRequest $request  ) : RedirectResponse
     {
 
-        return view('transactions.edit');
+        $movement->update( $request->all() );
+        return to_route('home')->with('success', 'Movimento Guardado!' );
+
     }
+
      /**
      *
      * Consultar movimientos por mes
