@@ -18,7 +18,7 @@ use Carbon\Carbon;
 class CashMovementController extends Controller
 {
 
-    private $cashMovementService ;
+    private $cashMovementService;
 
     public function __construct()
     {
@@ -27,7 +27,6 @@ class CashMovementController extends Controller
     /**
      * Lista de movientos de la caja
      * @param MovementRequest $request
-     *
      * @return JsonResponse
      *
      */
@@ -45,7 +44,6 @@ class CashMovementController extends Controller
      * Obtener total de gastos del mes
      *  @param MovementRequest $request
      *  @return int
-     *
      *
      */
     public function byMonth(MovementRequest $request) : int
@@ -75,9 +73,11 @@ class CashMovementController extends Controller
     /**
      *
      * Actualizar gastos del mes
+     *  @param StoreMovementRequest $request
+     *  @return JsonResponse
      *
      */
-    public function update(StoreMovementRequest $request)
+    public function update(StoreMovementRequest $request) : JsonResponse
     {
         $movement = CashMovement::firstOrFail($request->id);
 
@@ -92,9 +92,11 @@ class CashMovementController extends Controller
     /**
      *
      * Eliminar gasto
-     *
+     *  @param Request $request
+     *  @return JsonResponse
      */
-    public function destroy(Request $request){
+    public function destroy(Request $request) : JsonResponse
+    {
 
         CashMovement::destroy($request->id);
 

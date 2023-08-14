@@ -16,6 +16,12 @@ use App\Http\Resources\CashResource;
 
 class CashMovementService {
 
+    /***
+     *
+     * Obtener Lista de movimientos por fecha
+     * @param Request $request
+     *  @return CashResource
+     */
     public function index( Request $request )
     {
         $date = Carbon::parse($request->date);
@@ -27,7 +33,6 @@ class CashMovementService {
     /**
      *
      * Obtener total de ingresos
-     *
      * @return Int
      */
 
@@ -101,15 +106,10 @@ class CashMovementService {
      * @param Request $request
      * @return Void
      *
-     *
      */
-
-
     public function storeMovement( Request $request ) : void
     {
-
         CashMovement::create( $request->all() );
-
     }
 
 

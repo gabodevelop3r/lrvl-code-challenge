@@ -37,7 +37,7 @@ class CashMovementController extends Controller
      * @param string $dateArg
      * @return View
      */
-    public function index( $dateArg = null)
+    public function index( $dateArg = null) : View
     {
 
         list( $monthlyExpenses, $month, $movements ) = $this->cashMovementService->getMonthyExpenses( $dateArg );
@@ -63,7 +63,6 @@ class CashMovementController extends Controller
      * Transaccion de movimientos
      * @return View
      *
-     *
      */
     public function transactions() : View
     {
@@ -76,7 +75,8 @@ class CashMovementController extends Controller
      *
      *
      * Editar transaccion de movimientos
-     *
+     *  @param CashMovement $movement
+     *  @return View
      *
      */
     public function edit( CashMovement $movement ) : View
@@ -87,7 +87,9 @@ class CashMovementController extends Controller
     /**
      *
      *  Actualizar transaccion de movimientos
-     *
+     *  @param CashMovement $movement
+     *  @param StoreMovementRequest $request
+     *  @return RedirectResponse
      *
      */
     public function update( CashMovement $movement ,StoreMovementRequest $request  ) : RedirectResponse
@@ -113,7 +115,16 @@ class CashMovementController extends Controller
         return to_route( 'home', ['date' => $date ] );
     }
 
-    public function destroy( $id ) {
+    /***
+     *
+     * Eliminar movimiento
+     * @param int $id
+     *  @return RedirectResponse
+     *
+     */
+
+    public function destroy( int $id ) : RedirectResponse
+    {
         CashMovement::destroy($id);
         return to_route('home');
     }
