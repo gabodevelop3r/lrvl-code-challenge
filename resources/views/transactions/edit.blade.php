@@ -21,7 +21,7 @@
 
                             @foreach ($movementTypes as $movementType)
                                 <option
-                                    {{ ($movement->id == $movementType->id ? 'selected' : '')  }}
+                                    {{ ($movement->cash_movement_type_id == $movementType->id ? 'selected' : '')  }}
                                     value="{{ $movementType->id }}"
                                     >
                                     {{ $movementType->name }}
