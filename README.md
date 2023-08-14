@@ -32,5 +32,7 @@
 
 ## El proyecto se ejecuta en  **http://localhost:8000**
 
+## Cerrar servicios 
+-   docker-compose down
 
 
